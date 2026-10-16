@@ -1,0 +1,414 @@
+/* ============================================================
+   HAMRO SCRIM OFFICIAL — PREMIUM GOLD & BLACK
+   Tokens
+   --black:      #080808   page
+   --panel:      #0e0d0b   table surface
+   --line:       #2b2517   hairlines
+   --gold:       #e3c46a   brand / totals / 1st
+   --gold-deep:  #b8932f   frame + header rules
+   --ivory:      #f5ecd0   primary text
+   --dim:        #8a7a4a   muted text
+   --silver:     #c0c0c0   2nd
+   --bronze:     #b87333   3rd
+   Display face: Cinzel             (title, headers, rank)
+   Text face:    Cormorant Garamond (team names, numbers, buttons)
+   ============================================================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --black:#080808;
+    --panel:#0e0d0b;
+    --line:#2b2517;
+    --gold:#e3c46a;
+    --gold-deep:#b8932f;
+    --ivory:#f5ecd0;
+    --dim:#8a7a4a;
+    --silver:#c0c0c0;
+    --bronze:#b87333;
+}
+
+body{
+    font-family:'Cormorant Garamond',Georgia,serif;
+    background:var(--black);
+    color:var(--ivory);
+    min-height:100vh;
+    padding:48px 40px;
+    overflow-x:hidden;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+}
+
+/* ---------------- CAPTURE AREA (also used by the PNG export) ---------------- */
+
+.capture-area{
+    padding:44px 28px 28px;
+    background:var(--black);
+    border:1px solid var(--gold-deep);
+    font-family:'Cormorant Garamond',Georgia,serif;
+    color:var(--ivory);
+}
+
+h1{
+    text-align:center;
+    font-family:'Cinzel',Georgia,serif;
+    font-weight:600;
+    font-size:42px;
+    color:var(--gold);
+    letter-spacing:8px;
+    line-height:1.2;
+}
+
+h2{
+    text-align:center;
+    font-family:'Cinzel',Georgia,serif;
+    font-weight:500;
+    font-size:13px;
+    letter-spacing:7px;
+    color:var(--dim);
+    margin:10px 0 36px;
+    padding-bottom:22px;
+    position:relative;
+}
+
+h2::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:90px;
+    height:1px;
+    background:var(--gold-deep);
+}
+
+/* ---------------- LEADERBOARD ---------------- */
+
+.leaderboard{
+    background:var(--panel);
+    border:1px solid var(--line);
+}
+
+.table-scroll{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead th{
+    padding:18px 12px;
+    font-family:'Cinzel',Georgia,serif;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:2.5px;
+    color:var(--gold);
+    text-transform:uppercase;
+    border-bottom:1px solid var(--gold-deep);
+    white-space:nowrap;
+}
+
+.match-group-header{
+    border-bottom:1px solid var(--line);
+    border-left:1px solid var(--line);
+}
+
+.sub-head{
+    padding:10px 12px;
+    font-size:10px;
+    color:var(--dim);
+}
+
+/* first POS cell of every match gets the divider so M1..Mn read as groups */
+.sub-head:nth-child(odd){
+    border-left:1px solid var(--line);
+}
+
+tbody tr{
+    border-bottom:1px solid var(--line);
+    border-left:3px solid transparent;
+    transition:background .2s ease;
+}
+
+tbody tr:hover{
+    background:#15130d;
+}
+
+/* podium — DOM order already reflects rank after sorting */
+tbody tr:nth-child(1){
+    border-left-color:var(--gold);
+    background:#17130a;
+}
+tbody tr:nth-child(2){
+    border-left-color:var(--silver);
+}
+tbody tr:nth-child(3){
+    border-left-color:var(--bronze);
+}
+
+tbody td{
+    text-align:center;
+    padding:12px 10px;
+}
+
+.rank,
+.rank-num{
+    font-family:'Cinzel',Georgia,serif;
+    font-size:17px;
+    font-weight:600;
+    color:var(--dim);
+    white-space:nowrap;
+}
+
+.rank{
+    min-width:72px;
+}
+
+tbody tr:nth-child(1) .rank-num{ color:var(--gold); }
+tbody tr:nth-child(2) .rank-num{ color:var(--silver); }
+tbody tr:nth-child(3) .rank-num{ color:var(--bronze); }
+
+/* editable inputs */
+tbody td input{
+    width:64px;
+    height:40px;
+    text-align:center;
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-variant-numeric:lining-nums tabular-nums;
+    font-size:20px;
+    font-weight:700;
+    background:#14120d;
+    color:var(--ivory);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:0;
+    transition:border-color .2s ease, box-shadow .2s ease;
+}
+
+tbody td input:focus{
+    outline:none;
+    border-color:var(--gold);
+    box-shadow:0 0 0 2px rgba(227,196,106,.2);
+}
+
+.teamName{
+    width:100% !important;
+    max-width:220px;
+    text-align:left !important;
+    padding:0 12px !important;
+    font-size:19px !important;
+    font-weight:600 !important;
+}
+
+.teamName::placeholder{
+    color:var(--dim);
+    font-weight:500;
+}
+
+.teamName-display{
+    text-align:left;
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:21px;
+    font-weight:700;
+    color:var(--ivory);
+    padding-left:12px;
+}
+
+/* auto-calculated values are plain text, so they never look editable */
+.mp-value,
+.win-value,
+.export-value{
+    display:inline-block;
+    min-width:64px;
+    line-height:40px;
+    text-align:center;
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-variant-numeric:lining-nums tabular-nums;
+    font-size:21px;
+    font-weight:700;
+    color:var(--ivory);
+}
+
+.total,
+.total-value{
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-variant-numeric:lining-nums tabular-nums;
+    color:var(--gold);
+    font-size:28px;
+    font-weight:700;
+}
+
+.deleteBtn{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--dim);
+    padding:8px 12px;
+    border-radius:2px;
+    cursor:pointer;
+    font-size:14px;
+    transition:.2s ease;
+}
+
+.deleteBtn:hover,
+.deleteBtn:focus-visible{
+    background:#3a1512;
+    border-color:#8c2f26;
+    color:#ff9d92;
+    outline:none;
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+.buttons{
+    margin-top:32px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.buttons button{
+    padding:13px 26px;
+    border:1px solid var(--gold-deep);
+    background:transparent;
+    color:var(--gold);
+    cursor:pointer;
+    border-radius:2px;
+    font-family:'Cinzel',Georgia,serif;
+    font-weight:600;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.buttons button:hover,
+.buttons button:focus-visible{
+    background:rgba(227,196,106,.12);
+    outline:none;
+}
+
+/* the one filled button: the main action */
+#addTeam{
+    background:var(--gold);
+    color:#120e03;
+    border-color:var(--gold);
+}
+
+#addTeam:hover,
+#addTeam:focus-visible{
+    background:#f0d584;
+}
+
+#removeMatch,
+#reset{
+    border-color:var(--line);
+    color:var(--dim);
+}
+
+#reset:hover,
+#reset:focus-visible{
+    background:#3a1512;
+    border-color:#8c2f26;
+    color:#ff9d92;
+}
+
+::-webkit-scrollbar{
+    width:8px;
+    height:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:var(--gold-deep);
+    border-radius:20px;
+}
+
+/* ---------------- POINT SYSTEM LEGEND ---------------- */
+
+.point-legend{
+    margin-top:24px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:2px 20px;
+}
+
+.point-legend summary{
+    cursor:pointer;
+    padding:14px 0;
+    font-family:'Cinzel',Georgia,serif;
+    font-weight:600;
+    font-size:12px;
+    letter-spacing:2.5px;
+    color:var(--gold);
+    text-transform:uppercase;
+    list-style:none;
+}
+
+.point-legend summary::-webkit-details-marker{
+    display:none;
+}
+
+.point-legend summary:focus-visible{
+    outline:1px solid var(--gold);
+    outline-offset:4px;
+}
+
+.legend-table{
+    width:100%;
+    max-width:280px;
+    border-collapse:collapse;
+    margin-bottom:14px;
+}
+
+.legend-table th,
+.legend-table td{
+    padding:6px 10px;
+    text-align:left;
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-variant-numeric:lining-nums;
+    font-size:17px;
+    border-bottom:1px solid var(--line);
+}
+
+.legend-table th{
+    color:var(--dim);
+    font-family:'Cinzel',Georgia,serif;
+    letter-spacing:1.5px;
+    font-size:10px;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--gold-deep);
+}
+
+.legend-table td:last-child{
+    color:var(--gold);
+    font-weight:700;
+}
+
+.legend-note{
+    padding-bottom:16px;
+    font-size:16px;
+    line-height:1.6;
+    color:var(--dim);
+}
+
+@media (max-width:640px){
+    body{ padding:20px 12px; }
+    .capture-area{ padding:28px 12px 16px; }
+    h1{ font-size:26px; letter-spacing:4px; }
+    thead th{ padding:12px 6px; font-size:10px; letter-spacing:1.5px; }
+    tbody td{ padding:8px 4px; }
+    .teamName{ max-width:120px; }
+    .buttons button{ flex:1 1 calc(50% - 14px); padding:13px 12px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+    *{ transition:none !important; }
+}

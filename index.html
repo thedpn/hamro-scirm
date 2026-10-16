@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hamro Scrim Official</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="captureArea" class="capture-area">
+
+            <h1>HAMRO SCRIM OFFICIAL</h1>
+            <h2>Daily Scrim</h2>
+
+            <div id="leaderboard" class="leaderboard">
+
+                <div class="table-scroll">
+
+                    <table>
+
+                        <thead>
+
+                            <tr id="headerRow1">
+                                <th rowspan="2">Rank</th>
+                                <th rowspan="2">Team Name</th>
+                                <th rowspan="2">MP</th>
+                                <th rowspan="2">WIN</th>
+                                <th colspan="2" class="match-group-header" data-match="1">M1</th>
+                                <th colspan="2" class="match-group-header" data-match="2">M2</th>
+                                <th colspan="2" class="match-group-header" data-match="3">M3</th>
+                                <th colspan="2" class="match-group-header" data-match="4">M4</th>
+                                <th rowspan="2" id="totalHeader">TOTAL</th>
+                                <th rowspan="2">Action</th>
+                            </tr>
+
+                            <tr id="headerRow2">
+                                <th class="sub-head" data-match="1">POS</th>
+                                <th class="sub-head" data-match="1">K</th>
+                                <th class="sub-head" data-match="2">POS</th>
+                                <th class="sub-head" data-match="2">K</th>
+                                <th class="sub-head" data-match="3">POS</th>
+                                <th class="sub-head" data-match="3">K</th>
+                                <th class="sub-head" data-match="4">POS</th>
+                                <th class="sub-head" data-match="4">K</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tableBody">
+
+                            <!-- Teams will be added automatically -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <details class="point-legend">
+
+                <summary>Point System Reference</summary>
+
+                <table class="legend-table">
+
+                    <thead>
+                        <tr><th>Position</th><th>Points</th></tr>
+                    </thead>
+
+                    <tbody>
+                        <tr><td>1st</td><td>12</td></tr>
+                        <tr><td>2nd</td><td>9</td></tr>
+                        <tr><td>3rd</td><td>8</td></tr>
+                        <tr><td>4th</td><td>7</td></tr>
+                        <tr><td>5th</td><td>6</td></tr>
+                        <tr><td>6th</td><td>5</td></tr>
+                        <tr><td>7th</td><td>4</td></tr>
+                        <tr><td>8th</td><td>3</td></tr>
+                        <tr><td>9th</td><td>2</td></tr>
+                        <tr><td>10th</td><td>1</td></tr>
+                    </tbody>
+
+                </table>
+
+                <p class="legend-note">Enter each team's finish position per match — points are applied automatically and added to kills. Ties in total points are broken by most WINs (1st-place finishes).</p>
+
+            </details>
+
+        </div>
+
+        <div class="buttons">
+
+            <button id="addTeam">+ Add Team</button>
+
+            <button id="addMatch">+ Add Match</button>
+
+            <button id="removeMatch">− Remove Match</button>
+
+            <button id="download">📥 Download PNG</button>
+
+            <button id="reset">🗑 Reset</button>
+
+        </div>
+
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
